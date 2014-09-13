@@ -76,9 +76,9 @@ public:
         for(int i = 0; i < (int)poly.size(); ++i) {
             int cur = checkForEdge(p, i, (i + 1) % poly.size());
             
-            // if point lies on the boundary return no
+            // if point lies on the boundary return yes
             if(cur == -1) {
-                return false;
+                return true;
             }
             else {
                 intersectCount += cur;
