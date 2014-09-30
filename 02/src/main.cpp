@@ -63,11 +63,18 @@ public:
         int lower = 1;
         int upper = (int)poly.size() - 1;
         while(lower != upper) {
-            int cur = poly[lower] < poly[upper] ? lower++ : upper--;
+            int cur, direction;
+            if(poly[lower] < poly[upper]) {
+                cur = lower++;
+                direction = 1;
+            } else {
+                cur = upper--;
+                direction = -1;
+            }
             
             if(adjacent(cur, st.top().second)) {
                 while(st.top().first != -1 && 
-                      CCW(poly[st.top().first], poly[st.top().second], poly[cur]) < 0) {
+                      direction * CCW(poly[st.top().first], poly[st.top().second], poly[cur]) > 0) {
                     addTriangleFromStack(cur); 
                     st.pop();
                 } 
